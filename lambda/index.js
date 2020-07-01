@@ -81,7 +81,8 @@ const LaunchRequest = {
   async handle(handlerInput) {
     // Timer を使うには ユーザーの許可が必要。有効になってなければ声で促す
     const directive = timer.verifyConsentToken(handlerInput)
-    if (directive) return talk.launch(handler.response, storage, timerAskDirective)
+    console.log(directive)
+    if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
 
     return talk.launch(handlerInput.responseBuilder, storage)
   },
@@ -155,7 +156,7 @@ const SetNoodleTimerIntent = {
     )
 
     console.log(noodle, softy, minutes)
-    sessionAttributesOrError = await timer.runTimer(
+    const sessionAttributesOrError = await timer.runTimer(
       handlerInput, 
       noodle, (minutes) ? minutes : softy)
     
