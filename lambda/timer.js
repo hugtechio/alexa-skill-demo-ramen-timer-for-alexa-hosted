@@ -104,7 +104,6 @@ module.exports = {
     },
     runTimer: async (handlerInput, noodle, softy) => {
         const {attributesManager, serviceClientFactory} = handlerInput;
-        let sessionAttributes = {}
     
         try {
             const timerServiceClient = serviceClientFactory.getTimerManagementServiceClient();
@@ -116,7 +115,7 @@ module.exports = {
             const timerStatus = timerResponse.status;
             console.log(timerResponse)
 
-            sessionAttributes = attributesManager.getSessionAttributes();
+            const sessionAttributes = attributesManager.getSessionAttributes();
             sessionAttributes['lastTimerId'] = timerId
             sessionAttributes['noodle'] = noodle
             sessionAttributes['softy'] = softy
