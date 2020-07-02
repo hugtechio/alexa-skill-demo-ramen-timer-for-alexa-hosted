@@ -79,14 +79,6 @@ const LaunchRequest = {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
   },
   async handle(handlerInput) {
-<<<<<<< Updated upstream
-    // Timer を使うには ユーザーの許可が必要。有効になってなければ声で促す
-    const directive = timer.verifyConsentToken(handlerInput)
-    console.log(directive)
-    if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
-
-    return talk.launch(handlerInput.responseBuilder, storage)
-=======
     // [課題1]
     // Timer を使うには ユーザーの許可が必要。有効になってなければ声で促す
     // 
@@ -102,7 +94,6 @@ const LaunchRequest = {
     // console.log(directive)
     // if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
     // return talk.launch(handlerInput.responseBuilder, storage)
->>>>>>> Stashed changes
   },
 };
 
