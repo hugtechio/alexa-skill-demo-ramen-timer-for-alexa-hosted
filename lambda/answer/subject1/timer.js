@@ -71,15 +71,14 @@ module.exports = {
         if (!(permissions && permissions.consentToken)){
             console.log('No permissions found!');
             return {
-                // [課題1]
-                // ここにAPIの利用許可を尋ねるdirective を記述
-                // https://developer.amazon.com/ja-JP/docs/alexa/smapi/voice-permissions-for-timers.html
-                //
-                // 実装のヒント
-                // リクエストするスコープ：'alexa::alerts:timers:skill:readwrite'
-                // SendRequestの中身で要求する許可の種類: AskForPermissionsConsentRequest
-                // name: AskFor
-                // type: Connections.SendRequest
+                type: 'Connections.SendRequest',
+                'name': 'AskFor',
+                'payload': {
+                    '@type': 'AskForPermissionsConsentRequest',
+                    '@version': '1',
+                    'permissionScope': TIMERS_PERMISSION
+                },
+                token: 'verifier'
             }
         }
         console.log('Permissions found: ' + permissions.consentToken);

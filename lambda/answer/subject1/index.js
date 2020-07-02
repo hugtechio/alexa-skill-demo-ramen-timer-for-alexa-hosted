@@ -79,30 +79,12 @@ const LaunchRequest = {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
   },
   async handle(handlerInput) {
-<<<<<<< Updated upstream
-    // Timer を使うには ユーザーの許可が必要。有効になってなければ声で促す
+    // Timer を使うには ユーザーの許可が必要。有効になってなければ聞く
     const directive = timer.verifyConsentToken(handlerInput)
     console.log(directive)
     if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
 
     return talk.launch(handlerInput.responseBuilder, storage)
-=======
-    // [課題1]
-    // Timer を使うには ユーザーの許可が必要。有効になってなければ声で促す
-    // 
-    // 下のリターンを削除して、コメントアウト外す
-    return handlerInput.responseBuilder.speak(
-            '課題１を実装してください'
-        )
-        .withShouldEndSession(true)
-        .getResponse()
-
-    // [課題1] コメントアウト外す
-    // const directive = timer.verifyConsentToken(handlerInput)
-    // console.log(directive)
-    // if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
-    // return talk.launch(handlerInput.responseBuilder, storage)
->>>>>>> Stashed changes
   },
 };
 
@@ -162,7 +144,7 @@ const SetNoodleTimerIntent = {
       && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SetNoodleTimerIntent'
   },
   async handle(handlerInput) {
-
+  
     // [課題2 Timer処理の呼び出し]
     //
     // 実装のヒント
@@ -173,11 +155,9 @@ const SetNoodleTimerIntent = {
     // 関数の戻り値は、sessionAttributesOrError 変数に格納する。
     // (レスポンスに利用)
     const sessionAttributesOrError = { error: 500, errorKey: 'NOT_IMPLEMENTED_SUBJECT2', noodle: '' }
-
-    // コメントアウト外す
-    // return talk.SetNoodleTimerIntent(
-    //   handlerInput.responseBuilder,
-    //   sessionAttributesOrError)
+    return talk.SetNoodleTimerIntent(
+      handlerInput.responseBuilder,
+      sessionAttributesOrError)
   }
 };
 

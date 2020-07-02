@@ -101,6 +101,20 @@ module.exports = {
                     shouldEndSession: true,
                 }
             },
+            'NOT_IMPLEMENTED_SUBJECT2': (params) => {
+                return {
+                    speak: `課題２でタイマーの呼び出し箇所を実装してください。`,
+                    reprompt: `タイマーを実装してください。`,
+                    shouldEndSession: true,
+                }        
+            },
+            'NOT_IMPLEMENTED_SUBJECT3': (params) => {
+                return {
+                    speak: `課題３でタイマーを実装してください。`,
+                    reprompt: `あと少し、頑張りましょう！`,
+                    shouldEndSession: true,
+                }        
+            },
             'ON': (params) => {
                 if (!isNaN(params.softy)) {
                     params.softy = `${params.softy}分`
