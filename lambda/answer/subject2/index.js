@@ -198,6 +198,7 @@ exports.handler = skillBuilder
     HelpIntent,
     FallbackHandler,
     UnhandledIntent,
+    AskForResponseHandler,
   )
   .addRequestInterceptors(RequestInterceptor)
   .addErrorHandlers(ErrorHandler)
