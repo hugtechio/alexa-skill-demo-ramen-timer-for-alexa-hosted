@@ -79,12 +79,21 @@ const LaunchRequest = {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
   },
   async handle(handlerInput) {
-    // Timer を使うには ユーザーの許可が必要。有効になってなければ聞く
-    const directive = timer.verifyConsentToken(handlerInput)
-    console.log(directive)
-    if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
+    // [課題1]
+    // Timer を使うには ユーザーの許可が必要。有効になってなければ声で促す
+    // 
+    // 下のリターンを削除して、コメントアウト外す
+    return handlerInput.responseBuilder.speak(
+            '課題１を実装してください'
+        )
+        .withShouldEndSession(true)
+        .getResponse()
 
-    return talk.launch(handlerInput.responseBuilder, storage)
+    // [課題1] コメントアウト外す
+    // const directive = timer.verifyConsentToken(handlerInput)
+    // console.log(directive)
+    // if (directive) return talk.launch(handlerInput.responseBuilder, storage, directive)
+    // return talk.launch(handlerInput.responseBuilder, storage)
   },
 };
 
@@ -144,24 +153,22 @@ const SetNoodleTimerIntent = {
       && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SetNoodleTimerIntent'
   },
   async handle(handlerInput) {
-    const noodle = getSynonymValues(
-      handlerInput, 'noodle'
-    )
-    const softy = getSynonymValues(
-      handlerInput, 'softy'
-    )
-    const minutes = getSynonymValues(
-      handlerInput, 'minutes'
-    )
 
-    console.log(noodle, softy, minutes)
-    const sessionAttributesOrError = await timer.runTimer(
-      handlerInput, 
-      noodle, (minutes) ? minutes : softy)
-    
-    return talk.SetNoodleTimerIntent(
-      handlerInput.responseBuilder,
-      sessionAttributesOrError)
+    // [課題2 Timer処理の呼び出し]
+    //
+    // 実装のヒント
+    // getSynonymValues 関数を利用して、noodle, softy, minutes スロットから値を取得する
+    // timer.runTimer メソッドを 呼び出す
+    // minutes と softy は どちらか一方がnullになるので、取得できたほうを、
+    // runTimer の 第２引数に渡す
+    // 関数の戻り値は、sessionAttributesOrError 変数に格納する。
+    // (レスポンスに利用)
+    const sessionAttributesOrError = { error: 500, errorKey: 'NOT_IMPLEMENTED_SUBJECT2', noodle: '' }
+
+    // コメントアウト外す
+    // return talk.SetNoodleTimerIntent(
+    //   handlerInput.responseBuilder,
+    //   sessionAttributesOrError)
   }
 };
 
